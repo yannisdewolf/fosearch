@@ -3,24 +3,6 @@ import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.select.Elements
 
-//example url "http://fallout.wikia.com/wiki/Chemistry_station"
-fun consumeFalloutCraftable(url: String): List<ChemistryCraftingRecipe> {
-    val document: Document = Jsoup.connect(url).get()
-    val tableElements: Elements = document.getElementsByClass("va-table")
-
-    val elements = mutableListOf<ChemistryCraftingRecipe>()
-
-    for (tableElement in tableElements) {
-        val tbodyElement = tableElement.child(0)
-        val rows = tbodyElement.getElementsByTag("tr")
-        val chemistryCraftableItems = rows
-                .filterIndexed { index, element -> index > 0 }
-                .map { rowContent -> toChemistryCraftingRecipe(rowContent) }
-        elements.addAll(chemistryCraftableItems)
-
-    }
-    return elements
-}
 
 fun main(args: Array<String>) {
     val consumeFalloutCraftable = consumeFalloutCraftable("http://fallout.wikia.com/wiki/Chemistry_station");
@@ -28,6 +10,26 @@ fun main(args: Array<String>) {
 
 
 }
+
+//example url "http://fallout.wikia.com/wiki/Chemistry_station"
+fun consumeFalloutCraftable(url: String): List<ChemistryCraftingRecipe> {
+    val document: Document = Jsoup.connect(url).get()
+    val tableElements: Elements = document.getElementsByClass("va-table")
+
+    val elements = mutableListOf<ChemistryCraftingRecipe>()
+
+    tableElements
+            .map { it.child(0) }
+            .map { it.getElementsByTag("tr") }
+            .map {
+                it
+                        .filterIndexed { index, _ -> index > 0 }
+                        .map { toChemistryCraftingRecipe(it) }
+            }
+            .forEach { elements.addAll(it) }
+    return elements
+}
+
 
 fun toChemistryCraftingRecipe(element: Element): ChemistryCraftingRecipe {
     val tds = element.children()
@@ -73,11 +75,3 @@ data class RequiredItem(val amountNeeded: String, val elementNeeded: String)
 
 fun RequiredItem.description(): String = this.amountNeeded + " " + this.elementNeeded
 
-fun tovalue(toConvert: Element): String {
-    val needed = toConvert.getElementsByTag("a").get(0).text()
-
-    val lastIndex = toConvert.text().lastIndexOf("x")
-
-    val amountNeeded: String = if (lastIndex == -1) "1" else toConvert.text().substring(lastIndex + 1)
-    return "$amountNeeded $needed"
-}
