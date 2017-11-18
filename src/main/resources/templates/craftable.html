@@ -1,0 +1,12 @@
+<div class="starter-template">
+    {{#craftables}}
+    <h1>{{name}}</h1>
+    <p>{{id}}</p>
+    {{#requiredItems}}
+    <li>
+        {{amountNeeded}}&nbsp;{{elementNeeded}}
+    </li>
+    {{/requiredItems}}
+    <hr/>
+    {{/craftables}}
+</div>

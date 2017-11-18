@@ -1,0 +1,28 @@
+<html>
+<head><title>Hello soupie</title></head>
+<body>
+
+welcom to soupie
+
+
+<div id="div1"></div>
+
+<button > Klik hier!</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $("#div1").load(
+                "http://localhost:8080/api/allCraftables",
+                function (responseContent, status) {
+                    console.log('response ' + responseContent )
+                    console.log('status ' + status )
+                }
+            );
+        });
+    });
+</script>
+
+</body>
+</html>
