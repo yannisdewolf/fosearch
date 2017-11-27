@@ -1,0 +1,36 @@
+.onzichtbaar {
+    height: 0px;
+    background-color: red;
+    visibility: hidden;
+}
+
+.card {
+    float: left;
+    border: dashed black 1px;
+    height: 200px;
+    width: 300px;
+    margin: 10px;
+}
+
+.starter-template {
+    overflow: auto;
+}
+
+.title {
+    font-size: larger;
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.craftabletype {
+    color: gray;
+    display: inline;
+}
+
+.requirementlist {
+    background-color: aliceblue;
+}
+
+.actions {
+    color: green;
+}

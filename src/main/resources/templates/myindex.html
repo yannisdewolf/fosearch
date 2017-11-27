@@ -1,15 +1,86 @@
 <!doctype html>
 <html lang="en">
+<head>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+</head>
 <body>
-<h1>Demo</h1>
-<div>Hello World</div>
-
-
 
 <div class="container">
     {{>craftable}}
 </div>
 
+<script>
+
+
+    $(document).ready(function () {
+        enableButtons()
+
+    });
+
+
+    function enableButtons() {
+        $("button").prop("disabled", false)
+    }
+
+    function disableButtons() {
+        $("button").prop("disabled", true)
+    }
+
+    function markAsAddon(id) {
+        disableButtons()
+        $.ajax({
+            url: 'http://localhost:8080/api/craftable/' + id + '/addon',
+            method: 'PUT',
+            success: function (data, textStatus, jqXHR) {
+                console.log()
+                var elem = "#craftable-element-" + id
+                $(elem).addClass('onzichtbaar')
+                enableButtons()
+            }
+        })
+    }
+
+    function myfunc(id, newtype) {
+        disableButtons()
+
+        $.ajax({
+            url: 'http://localhost:8080/api/' + id + '/type',
+            contentType: 'application/json',
+            method: 'POST',
+            data: JSON.stringify({newType: newtype}),
+            success: function (data, textStatus, jqXHR) {
+
+                console.log('succesful response: ' + data + ' textStatus ' + textStatus
+                    + ' jqXHR ' + JSON.stringify(jqXHR))
+
+                var elem = "#assigntypeform-" + id
+
+                console.log('use selector ' + elem)
+
+                $(elem).addClass('onzichtbaar')
+
+                //$(elem).remove()
+                enableButtons()
+
+            },
+            error: function (jqXHR, textstatus, errorThrown) {
+                console.log('error occured jqXHR ' + JSON.stringify(jqXHR) + ' status ' + textstatus + ' errorthrown ' + errorThrown)
+                enableButtons()
+            }
+        });
+
+        //$.post('http://localhost:8080/api/'+id+'/type', {'newType': 'GRENADES'}, function (data) {
+        //    console.log(data)
+        //})
+    }
+
+</script>
 
 </body>
 </html>

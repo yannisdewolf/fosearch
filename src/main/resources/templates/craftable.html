@@ -1,12 +1,43 @@
 <div class="starter-template">
     {{#craftables}}
-    <h1>{{name}}</h1>
-    <p>{{id}}</p>
-    {{#requiredItems}}
-    <li>
-        {{amountNeeded}}&nbsp;{{elementNeeded}}
-    </li>
-    {{/requiredItems}}
-    <hr/>
+    <div id="craftable-element-{{id}}" class="card">
+        <div>
+        <div class="title">{{name}}</div>
+        <div class="craftabletype">type: <span id="type-{{id}}">{{type}}</span></div>
+        </div>
+        <div class="requirementlist">
+            <ul>
+                {{#requiredItems}}
+                <li>
+                    {{amountNeeded}}&nbsp;{{elementNeeded}}
+                </li>
+                {{/requiredItems}}
+            </ul>
+        </div>
+
+        <div class="actions">
+            <button disabled onclick="markAsAddon('{{id}}')">Mark as addon material</button>
+
+            <!--no type in craftable -->
+            {{^type}}
+            <div class="assigntypeform" id="assigntypeform-{{id}}">
+                <hr/>
+
+                <button disabled onclick="myfunc('{{id}}', 'GRENADES')">Assign GRENADES</button>
+                <button disabled onclick="myfunc('{{id}}', 'DRUGS')">Assign DRUGS</button>
+                <button disabled onclick="myfunc('{{id}}', 'FIREWORKS')">Assign FIREWORKS</button>
+                <button disabled onclick="myfunc('{{id}}', 'HEALING')">Assign HEALING</button>
+                <button disabled onclick="myfunc('{{id}}', 'MINES')">Assign MINES</button>
+                <button disabled onclick="myfunc('{{id}}', 'SYRINGER_AMMO')">Assign SYRINGER
+                </button>
+                <button disabled onclick="myfunc('{{id}}', 'UTILITY')">Assign UTILITY</button>
+                <hr/>
+            </div>
+            {{/type}}
+        </div>
+
+    </div>
     {{/craftables}}
 </div>
+
+

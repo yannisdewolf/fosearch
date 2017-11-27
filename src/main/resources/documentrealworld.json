@@ -1,0 +1,18 @@
+[{
+  "name": "Bag of fertilizer",
+  "breaks_into": ["Fertilizer", "Acid"],// http://fallout.wikia.com/wiki/Fallout_4_junk_items component sources table
+  "component_of": []
+},{
+  "name": "Fertilizer",
+  "breaks_into": [],
+  "component_of": ["Baseball grenade", "Jet"]
+},{
+  "name": "Baseball grenade",
+  "breaks_into": [],
+  "component_of": []
+},{
+  "name": "Acid",
+  "breaks_into": [],
+  "component_of": ["Acid concentrate", "Cryo mine", "Cryogenic grenade", "Cutting fluid"] //content of aside element
+},
+]

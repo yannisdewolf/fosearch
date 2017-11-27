@@ -1,0 +1,44 @@
+{
+  "name": "element",
+  "broken_from": [
+    "source_elem_1", "source_elem_2"
+  ],
+  "component_of": [
+    "craftable_name_with_element_as_ingredient",
+    "other_craftable_name_with_element_as_ingredient"
+  ],
+  "xpGain": 2,
+  "type": {
+    "main": "CHEMISTRY",
+    "subtype": "DRUGS"
+  },
+  "addon": false,
+  "sellingvalue": 10, //per piece
+  "buyingvalue": 12 //per piece
+}
+
+
+
+/*
+
+  main types:
+  - LEAF_ELEMENT: not craftable, but breaks into crafting components
+      example: Abraxo cleaner
+  - ROOT_ELEMENT: craftable, but cannot be broken into parts
+      example: Acid, Adhesive, Aluminium, Wood, Bone, Concrete, Steel, ...
+
+
+
+  main type: CHEMISTRY
+  subtypes: DRUGS, FIREWORKS, GRENADE, HEALING, MINES, UTILITY, SYRINGER
+
+
+  main type: JUNK_ITEM,
+
+
+
+*/
+
+/*
+
+*/
