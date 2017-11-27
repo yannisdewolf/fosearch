@@ -1,4 +1,4 @@
-##Import data
+## Import data
 
 [fallout.wikia.com](http://fallout.wikia.com)
 
@@ -12,12 +12,12 @@ See package `de.dewolf.fosearch.import`
 * JSOUP
 
 
-##Operational website
+## Operational website
 `be.dewolf.fosearch.operational.FosearchApplication`
 
 main url: [http://localhost:8080/craftable](http://localhost:8080/craftable)
 
-##Database
+## Database
 
 mongo on localhost
 
